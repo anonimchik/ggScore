@@ -1,0 +1,301 @@
+//====================
+//-VARIABLES
+//====================
+
+$page-background: #151515;
+$block-background: #222222;
+$pagination-background: #1b1b1b;
+
+//====================
+//-MIXINS
+//====================
+
+@mixin block-header-wrapper {
+    background-image: url('../images/stripe.png');
+    background-color: #272c37;
+    color: white;
+    padding: 1rem;
+    border-bottom: 2px solid rgb(93, 255, 168);
+    margin: 0;
+}
+@mixin block-wrapper {
+    background-color: $block-background;
+    padding: .5rem;
+}
+@mixin pagination {
+    &_pagination{
+        position: absolute;
+        right: 0;
+        width: 150px;
+        padding-top: 1rem;
+        & ul{
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: end;
+            list-style: none;
+            color: #898989;
+            & li a{
+                padding: .5rem;
+                border: 1px solid black;
+                background-color: #42484e;
+                text-decoration: none;
+                color: inherit;
+                &:hover{
+                    color: white;
+                    background-color: black;
+                }
+            } 
+        }
+    }
+}
+
+//====================
+//-NAVBAR SECTION
+//====================
+.nav{
+    position: fixed;
+    transition: width 5s ease;
+    background-color: #23232e;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 9999;
+    &:hover .logo a{
+        filter: none;
+        & .nav-text{
+            color: white;
+        }
+        & i{
+            transform: rotate(-180deg) !important;
+            &::before{
+                color: rgb(93, 255, 168);
+            }
+        } 
+    }
+    &:hover a .nav-text{
+        display: inline !important;
+        position: relative !important;
+        left: unset !important;
+    }
+    &:hover .nav-list a{
+        width: 16rem;
+    }
+    & .nav-list{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        transition: width 600ms ease;
+        & .nav-link{
+            &:hover{
+                background-color: #141418;
+                & a{
+                    filter: grayscale(0) opacity(1) !important;
+                    & i::before{
+                        color: rgb(93, 255, 168);
+                    }
+                    & .nav-text{
+                        color: white;
+                    }
+                }
+            }
+            & i::before{
+                font-size: 2rem;
+                margin: 0 1.5rem;
+                max-width: 70px;
+            }
+        }
+        & .nav-text{
+            display: none;
+            margin-right: 2rem;
+        }
+        & .logo{
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: .3ch;
+            width: 100%;
+            color: white;
+            background-color: #141418;
+            & i{
+                transform: rotate(0deg);
+                transition: transform .5s;
+                font-size: 3rem;
+            }
+        }
+        & a{
+            display: flex;
+            align-items: center;
+            height: 5rem;
+            color: #b6b6b6;
+            text-decoration: none;
+            filter: grayscale(100%) opacity(.7);
+            transition: filter 600ms;
+            justify-content: space-around;
+            & .nav-text{
+                display: inline;
+                position: absolute;
+                left: -999px;
+                transition: width 600ms ease;
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+//==========================
+//-CONTENT SECTION MAIN PAGE
+//==========================
+
+.content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 5rem;
+    width: calc(100vw - 9rem); 
+    background-color: $page-background;
+    height: 100vh;
+    padding: 0 2rem;
+    font-size: 1rem;
+}
+.matches{
+    position: relative;
+    padding-bottom: 3rem;
+    @include pagination;
+}
+.matches_title, .rating-teams_title{
+    @include block-header-wrapper;
+}
+.matches-rating-teams{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 1rem;
+    @include block-wrapper;
+}
+.match{
+    @include block-header-wrapper;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    padding: unset;
+    align-items: center;
+    border-bottom: 1px solid #666666;
+    &:nth-child(2n){
+        background-color: #1b1b1b;
+    }
+    &:nth-child(2n-1){
+        background-color: #272c31;
+    }
+    &:hover{
+        background-color: #333333;
+    }
+    & a.teams{
+        display: grid;
+        grid-template-columns: 2fr 1fr 2fr;
+        text-decoration: none;
+        color: inherit;
+        padding: 1rem 0;
+        & span img:nth-child(n+1) {
+            vertical-align: middle;
+            margin-right: .5rem;
+        }
+        & span img:nth-child(2n-1) {
+            vertical-align: middle;
+            margin-left: .5rem;
+        }
+        & span:nth-child(3n-2){
+            text-align: right;
+        }
+        & .vs{
+            text-align: center;
+        }
+        & span:nth-child(5n-1){
+            text-align: left;
+        }
+    }
+    & .date-time{
+        font-size: .8rem;
+        color: #777;
+    }
+    & .tournament-logo{
+        margin: auto;
+    }
+}
+.tournaments{
+    position: relative;
+    padding-bottom: 3rem;
+    @include pagination;
+}
+.tournaments_title{
+    @include block-header-wrapper;
+}
+.tournaments-prize-tournaments{
+    @include block-wrapper;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 1rem;
+    & .tournament{
+        @include block-header-wrapper;
+        border-bottom: 1px solid #666666;
+    }
+    & .prize-tournaments_title{
+        @include block-header-wrapper;
+    }
+}
+.tournament{
+    background-color: #222222 !important;
+    display: grid;
+    grid-template-columns: .5fr 1.5fr 1fr 1fr;
+    &:hover{
+        background-color: #333333 !important;
+    }
+    & a{
+        color: #91CDD7;
+        text-decoration: none;
+        &:hover{
+            color: #1e9acb;
+        }
+    } 
+    &_prize{
+        text-align: end;
+    }
+    &_date{
+        text-align: center;
+    }
+    & .fa-dollar-sign{
+        padding-right: .5rem;
+    }
+}
+
+//================
+//- MEDIA REQUESTS
+//================
+@media (max-width: 700px){
+    .rating-teams_title, .prize-tournaments{
+        display: none;
+    }
+    .matches-rating-teams, .tournaments-prize-tournaments{
+        grid-template-columns: unset;
+        grid-gap: unset;
+    }
+    .match{
+        grid-gap: unset;
+        & a.teams{
+            grid-template-rows: 1fr 1fr 1fr;
+            grid-template-columns: unset;
+            text-align: center;
+            & span:nth-child(3n-2){
+                text-align: center;
+            }
+        }
+    }
+    .nav{
+        position: fixed;
+        bottom: 0;
+    }
+}
