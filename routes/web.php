@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'MainController@index');
-Route::get('/ajax', 'AjaxController@index');
 Route::get('message/{id}/edit', ['uses' => 'MainController@edit', 'as' => 'message.edit'])->where(['id' => '[0-9]+']);
+Route::get('/entrance-registration', 'AdminController@index');
+Route::get('/ajax/pagination', 'AjaxController@pagination');
+Route::post('/ajax/auth', 'AjaxController@auth');
+Route::post('/ajax/registr', 'AjaxController@registr');
 

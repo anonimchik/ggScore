@@ -1,19 +1,39 @@
-//====================
-//-VARIABLES
-//====================
+
+//============================================
+//- IMPORTS
+//============================================
+
+@import 'fonts';
+
+//============================================
+//- END IMPORTS
+//============================================
+
+
+
+//============================================
+//- VARIABLES
+//============================================
 
 $page-background: #151515;
 $block-background: #222222;
 $pagination-background: #1b1b1b;
+$font-color : white;
 
-//====================
-//-MIXINS
-//====================
+//============================================
+//- END VARIABLES
+//============================================
+
+
+
+//============================================
+//- MIXINS
+//============================================
 
 @mixin block-header-wrapper {
     background-image: url('../images/stripe.png');
     background-color: #272c37;
-    color: white;
+    color: $font-color;
     padding: 1rem;
     border-bottom: 2px solid rgb(93, 255, 168);
     margin: 0;
@@ -42,7 +62,7 @@ $pagination-background: #1b1b1b;
                 text-decoration: none;
                 color: inherit;
                 &:hover{
-                    color: white;
+                    color: $font-color;
                     background-color: black;
                 }
             } 
@@ -50,9 +70,37 @@ $pagination-background: #1b1b1b;
     }
 }
 
-//====================
+//============================================
+//- END MIXINS
+//============================================
+
+
+
+//============================================
+//- UNSET DEFAULT STYLES
+//============================================
+
+body{
+    margin: 0;
+}
+input[type=button] {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+//============================================
+//- END UNSET DEFAULT STYLES
+//============================================
+
+
+
+//============================================
 //-NAVBAR SECTION
-//====================
+//============================================
 .nav{
     position: fixed;
     transition: width 5s ease;
@@ -64,7 +112,7 @@ $pagination-background: #1b1b1b;
     &:hover .logo a{
         filter: none;
         & .nav-text{
-            color: white;
+            color: $font-color;
         }
         & i{
             transform: rotate(-180deg) !important;
@@ -99,7 +147,7 @@ $pagination-background: #1b1b1b;
                         color: rgb(93, 255, 168);
                     }
                     & .nav-text{
-                        color: white;
+                        color: $font-color;
                     }
                 }
             }
@@ -121,7 +169,7 @@ $pagination-background: #1b1b1b;
             font-size: 1.5rem;
             letter-spacing: .3ch;
             width: 100%;
-            color: white;
+            color: $font-color;
             background-color: #141418;
             & i{
                 transform: rotate(0deg);
@@ -149,9 +197,15 @@ $pagination-background: #1b1b1b;
     }
 }
 
-//==========================
-//-CONTENT SECTION MAIN PAGE
-//==========================
+//============================================
+//- END NAVBAR SECTION
+//============================================
+
+
+
+//============================================
+//- CONTENT SECTION MAIN PAGE
+//============================================
 
 .content{
     position: absolute;
@@ -272,9 +326,177 @@ $pagination-background: #1b1b1b;
     }
 }
 
-//================
+//============================================
+//- END CONTENT SECTION MAIN PAGE
+//============================================
+
+
+
+//============================================
+//- ADMIN PANEL CSS
+//============================================
+
+.menu-section{
+    position: fixed;    
+    width: 10rem;  
+    height: 100vh;
+    margin: 0;
+    background-color: $block-background;
+    & .menu{
+        height: 20rem;
+        &_list{
+            list-style: none;
+        }
+        &_link{
+            text-decoration: none;
+            color: $font-color;
+        }
+    }
+}
+
+//============================================
+//- END ADMIN PANEL CSS
+//============================================
+
+//============================================
+//- ETRANCE CSS
+//============================================
+
+body{
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    justify-items: flex-end;
+    background-color: $page-background;
+}
+.entrance-registration{
+    display: grid;
+    padding: 0;
+    list-style: none;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    margin: 0;
+    & a{
+        display: block;
+        padding: 1rem;
+        text-decoration: none;
+        color: inherit;
+        background-color: #424f58;
+        & i{
+            padding-right: 5px;
+        }
+    }
+    &_link__active{
+        background-color: #19b087 !important;
+    }
+    &-wrapper{ 
+        width: 22rem;
+        margin: auto 1rem;
+        color: $font-color;
+        height: 25rem;
+        justify-content: space-between;
+        background-color: rgb(35, 35, 46);
+        letter-spacing: 1px;
+        padding: 1.5rem;
+        font-family: 'Ubuntu';
+        & form{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            & .login i:first-child, .password i:first-child{
+                width: 40px;
+                height: 56px;
+                line-height: 56px;
+                text-align: center;
+                margin-right: -40px;
+                position: relative;
+                z-index: 1;
+                float: left;
+                color: #8c9399;
+                font-size: 1.5rem;
+            }
+            & .require-field{
+                opacity: 0;
+                &::after{
+                    content: "*";
+                    width: 40px;
+                    height: 56px;
+                    line-height: 56px;
+                    text-align: center;
+                    position: absolute;
+                    z-index: 1;
+                    right: 0;
+                    color: #18af87;
+                }
+            }
+            & .login, .password{
+                position: relative;
+                & input{
+                    height: 22px;
+                    padding: 1rem 1rem 1rem 40px;
+                    width: calc(100% - 58px);
+                    border: 1px solid #8c9399;
+                    background-color: #23232e;
+                    color: #8c9399;
+                    font-size: 1.5rem;
+                    box-shadow: none;
+                    &:valid:not(:placeholder-shown){
+                        border-color: #18af87;
+                    }
+                    &:invalid:not(:placeholder-shown){
+                        border-color: red;
+                    }
+                }
+                & :focus::placeholder{
+                    color: transparent;
+                }
+            }
+            & input[type=submit]{
+                padding: 1rem;
+                background-color: #19b086;
+                letter-spacing: 1px;
+                font-size: 1.5rem;
+                font-style: bold;
+                font-family: 'Ubuntu';
+                border: none;
+                color: inherit;
+                cursor: pointer;
+            }
+            & .remember-password{
+                text-align: center;
+                &_link{
+                    text-align: center;
+                    text-decoration: dashed underline;
+                    color: #19b086;
+                }
+            }
+            & label{
+                font-size: 1.2rem;
+                & span , i{
+                    padding-left: 5px;
+                    cursor: pointer;
+                }
+                input[type=checkbox]{
+                    display: none;
+                }
+            }
+        }
+    }
+   
+}
+
+
+//============================================
+//- END ENTRANCE CSS
+//============================================
+
+
+
+//============================================
 //- MEDIA REQUESTS
-//================
+//============================================
 @media (max-width: 700px){
     .rating-teams_title, .prize-tournaments{
         display: none;
@@ -299,3 +521,7 @@ $pagination-background: #1b1b1b;
         bottom: 0;
     }
 }
+
+//============================================
+//- END MEDIA REQUESTS
+//============================================
